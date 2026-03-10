@@ -69,16 +69,14 @@ document.addEventListener('DOMContentLoaded', () => {
             // Intentar iniciar sesión con Firebase
             signInWithEmailAndPassword(auth, email, password)
                 .then((userCredential) => {
-                    // Cierra el modal de Bootstrap al tener éxito
-                    const modal = bootstrap.Modal.getInstance(document.getElementById('loginModal'));
+                    // FIX: Usamos getOrCreateInstance para evitar errores de Bootstrap
+                    const modalElement = document.getElementById('loginModal');
+                    const modal = bootstrap.Modal.getOrCreateInstance(modalElement);
                     modal.hide();
+                    
                     loginForm.reset();
                     alert("¡Bienvenido Administrador!");
                 })
-                .catch((error) => {
-                    console.error("Error de Auth: ", error.message);
-                    alert("Credenciales incorrectas. Verifica tu correo y contraseña.");
-                });
         });
     }
 
