@@ -20,15 +20,59 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-                <ul class="navbar-nav">
+                <ul class="navbar-nav align-items-center">
                     <li class="nav-item"><a class="nav-link" href="#inicio">Inicio</a></li>
                     <li class="nav-item"><a class="nav-link" href="#nosotros">Nosotros</a></li>
                     <li class="nav-item"><a class="nav-link" href="#productos">Catálogo</a></li>
                     <li class="nav-item"><a class="nav-link" href="#contacto">Contacto</a></li>
+                    <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
+                        <button class="btn btn-outline-light position-relative" type="button" data-bs-toggle="offcanvas" data-bs-target="#carritoOffcanvas" aria-controls="carritoOffcanvas">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span id="cartCount" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                0
+                            </span>
+                        </button>
+                    </li>
                 </ul>
             </div>
         </div>
     </nav>
+
+    <div class="offcanvas offcanvas-end text-dark" tabindex="-1" id="carritoOffcanvas" aria-labelledby="carritoOffcanvasLabel">
+        <div class="offcanvas-header border-bottom">
+            <h5 class="offcanvas-title text-primary fw-bold" id="carritoOffcanvasLabel"><i class="fas fa-shopping-cart"></i> Tu Pedido</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body d-flex flex-column">
+            <ul id="listaCarrito" class="list-group list-group-flush mb-3 flex-grow-1 overflow-auto">
+                <li class="list-group-item text-center text-muted mt-4">Tu carrito está vacío</li>
+            </ul>
+            
+            <div class="border-top pt-3">
+                <h4 class="d-flex justify-content-between align-items-center mb-3">
+                    <span>Total:</span>
+                    <strong class="text-primary">$<span id="totalCarrito">0</span> MXN</strong>
+                </h4>
+                
+                <form id="formPedido" style="display: none;">
+                    <h6 class="mb-2">Datos de Envío</h6>
+                    <div class="mb-2">
+                        <input type="text" class="form-control form-control-sm" id="pedidoNombre" placeholder="Tu Nombre Completo" required>
+                    </div>
+                    <div class="mb-2">
+                        <input type="email" class="form-control form-control-sm" id="pedidoEmail" placeholder="Tu Correo Electrónico" required>
+                    </div>
+                    <div class="mb-3">
+                        <textarea class="form-control form-control-sm" id="pedidoDireccion" rows="2" placeholder="Dirección de envío completa" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-sakura w-100">Confirmar Pedido</button>
+                </form>
+                <a href="checkout.html">
+                    <button id="btnProcederPago" class="btn btn-sakura w-100 disabled">Proceder al Pago</button>
+                </a>
+            </div>
+        </div>
+    </div>
 
     <header id="inicio" class="d-flex align-items-center justify-content-center text-center vh-100">
         <div class="container">
@@ -86,44 +130,19 @@
 
     <section id="productos" class="bg-overlay section-padding">
         <div class="container">
-            <h2 class="text-center mb-5 section-title">Favoritos del Mes</h2>
-            <div class="row">
-                <div class="col-md-4 mb-4">
-                    <div class="card h-100 border-0 shadow product-card">
-                        <div class="card-img-wrapper">
-                            <img src="img/1.jpg" class="card-img-top" alt="Figuras Coleccionables">
-                        </div>
-                        <div class="card-body text-dark">
-                            <h5 class="card-title">Figuras Coleccionables</h5>
-                            <p class="card-text">Las mejores marcas: Good Smile, Banpresto y más.</p>
-                            <button class="btn btn-outline-primary w-100 mt-2">Ver Detalles</button>
-                        </div>
-                    </div>
+            <h2 class="text-center mb-5 section-title">Novedades en Sakura Kaigai</h2>
+            
+            <div class="row justify-content-center" id="contenedorPreview">
+                <div class="col-12 text-center">
+                    <div class="spinner-border text-primary" role="status"></div>
+                    <p class="mt-2 text-white">Cargando novedades...</p>
                 </div>
-                <div class="col-md-4 mb-4">
-                    <div class="card h-100 border-0 shadow product-card">
-                        <div class="card-img-wrapper">
-                            <img src="img/2.jpg" class="card-img-top" alt="Snacks Japoneses">
-                        </div>
-                        <div class="card-body text-dark">
-                            <h5 class="card-title">Snacks & Dulces</h5>
-                            <p class="card-text">Pocky, KitKat exclusivos y Ramune.</p>
-                            <button class="btn btn-outline-primary w-100 mt-2">Ver Detalles</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-4">
-                    <div class="card h-100 border-0 shadow product-card">
-                        <div class="card-img-wrapper">
-                            <img src="img/3.jpg" class="card-img-top" alt="Videojuegos Retro">
-                        </div>
-                        <div class="card-body text-dark">
-                            <h5 class="card-title">Videojuegos Retro</h5>
-                            <p class="card-text">Consolas y juegos clásicos en perfecto estado.</p>
-                            <button class="btn btn-outline-primary w-100 mt-2">Ver Detalles</button>
-                        </div>
-                    </div>
-                </div>
+            </div>
+
+            <div class="text-center mt-5">
+                <a href="catalogo.html" class="btn btn-outline-light btn-lg rounded-pill px-4 py-2">
+                    Explorar Todo el Catálogo <i class="fas fa-arrow-right ms-2"></i>
+                </a>
             </div>
         </div>
     </section>
@@ -188,9 +207,30 @@
         </div>
     </footer>
 
-    <div id="adminPanel" class="container mt-5 mb-5 p-4 border border-warning rounded" style="display: none; background-color: rgba(255, 193, 7, 0.1);">
-        <h3 class="text-warning text-center"><i class="fas fa-lock-open"></i> Modo Administrador Activo</h3>
-        <p class="text-center">Has iniciado sesión correctamente. Aquí podrías ver los mensajes de la base de datos o editar productos.</p>
+    <div id="adminPanel" class="container mt-5 mb-5 p-4 border border-warning rounded shadow" style="display: none; background-color: rgba(255, 193, 7, 0.05);">
+        <h2 class="text-warning text-center mb-4"><i class="fas fa-user-shield"></i> Dashboard Sakura Kaigai</h2>
+        
+        <div class="row">
+            <div class="col-lg-6 mb-4">
+                <div class="card border-warning h-100">
+                    <div class="card-header bg-warning text-dark fw-bold">
+                        <i class="fas fa-box-open"></i> Pedidos Recientes
+                    </div>
+                    <div class="card-body overflow-auto" style="max-height: 500px;" id="contenedorPedidos">
+                        </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-6 mb-4">
+                <div class="card border-info h-100">
+                    <div class="card-header bg-info text-dark fw-bold">
+                        <i class="fas fa-envelope"></i> Solicitudes de Contacto
+                    </div>
+                    <div class="card-body overflow-auto" style="max-height: 500px;" id="contenedorTarjetas">
+                        </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <div class="modal fade text-dark" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
